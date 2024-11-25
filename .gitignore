@@ -1,1 +1,2 @@
-.ini
+# ignore ini files with database login credentials
+db_connection.ini
