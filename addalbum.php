@@ -1,6 +1,5 @@
 <?php
 include('db_connection.php');
-session_start();
 if (!isset($_SESSION['userId'])) {
     header("Location: login.php");
     exit();
@@ -26,12 +25,8 @@ $stmt->execute();
 $accessibilities = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Album</title>
-</head>
-<body>
+<?php include('./common/header.php'); ?>
+
     <h1>Add Album</h1>
     <?php if (isset($successMessage)) echo "<p style='color:green;'>$successMessage</p>"; ?>
     <form method="post" action="">
@@ -47,5 +42,5 @@ $accessibilities = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <textarea id="description" name="description"></textarea><br>
         <input type="submit" value="Add Album">
     </form>
-</body>
-</html>
+
+<?php include('./common/footer.php'); ?>

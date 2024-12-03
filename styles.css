@@ -6,3 +6,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : Nov 29, 2024, 7:11:51 a.m.
     Author     : filip
 */
+
+.navbar-img{
+    height: 50px;
+    width: 50px;
+}
+
+nav a {
+    color: white !important;
+}
+
+nav{
+    margin-bottom: 50px;
+}
+
+
+footer{
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    background-color: #006341;
+    color: white;
+    padding-top: 16px;
+    width: 100%;
+}

@@ -35,14 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-</head>
-<body>
+
+<?php include('./common/header.php'); ?>
+
     <h2>Sign Up</h2>
     <form method="POST">
         <label for="userId">User ID:</label>
@@ -56,5 +51,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Sign Up</button>
     </form>
     <?php if (isset($error)) echo "<p style='color: red;'>$error</p>"; ?>
-</body>
-</html>
+
+<?php include('./common/footer.php'); ?>

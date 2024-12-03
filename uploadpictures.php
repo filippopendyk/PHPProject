@@ -1,6 +1,7 @@
+<?php include('./common/header.php'); ?>
+
 <?php
 include('db_connection.php');
-session_start();
 if (!isset($_SESSION['userId'])) {
     header("Location: login.php");
     exit();
@@ -40,29 +41,36 @@ $stmt->execute(['ownerId' => $userId]);
 $albums = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Upload Pictures</title>
-</head>
-<body>
-    <h1>Upload Pictures</h1>
-    <?php if (isset($successMessage)) echo "<p style='color:green;'>$successMessage</p>"; ?>
-    <?php if (isset($errorMessage)) echo "<p style='color:red;'>$errorMessage</p>"; ?>
+<div class="container mt-5">
+    <h1 class="mb-4">Upload Pictures</h1>
+    <p>Accepted Pictures types: JPG (JPEG), GIF and PNG</p>
+    <p>You can upload multiple pictures at a time by pressing the shift key while selecting pictures</p>
+<p>When uploading multiple pictures, the title and description fields will be applied to all pictures</p>
+    <?php if (isset($successMessage)) echo "<div class='alert alert-success'>$successMessage</div>"; ?>
+    <?php if (isset($errorMessage)) echo "<div class='alert alert-danger'>$errorMessage</div>"; ?>
     <form method="post" action="" enctype="multipart/form-data">
-        <label for="album_id">Upload to Album:</label>
-        <select id="album_id" name="album_id" required>
-            <?php foreach ($albums as $album) { ?>
-                <option value="<?php echo htmlspecialchars($album['Album_Id']); ?>"><?php echo htmlspecialchars($album['Title']); ?></option>
-            <?php } ?>
-        </select><br>
-        <label for="file">File to Upload:</label>
-        <input type="file" id="file" name="file" required><br>
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required><br>
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description"></textarea><br>
-        <input type="submit" value="Upload Picture">
+        <div class="mb-3">
+            <label for="album_id" class="form-label">Upload to Album:</label>
+            <select id="album_id" name="album_id" class="form-select" required>
+                <?php foreach ($albums as $album) { ?>
+                    <option value="<?php echo htmlspecialchars($album['Album_Id']); ?>"><?php echo htmlspecialchars($album['Title']); ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">File to Upload:</label>
+            <input type="file" id="file" name="file" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea id="description" name="description" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Picture</button>
     </form>
-</body>
-</html>
+</div>
+
+<?php include('./common/footer.php'); ?>

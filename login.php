@@ -22,20 +22,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <h1>Login</h1>
-    <?php if (isset($errorMessage)) echo "<p style='color:red;'>$errorMessage</p>"; ?>
+<?php include('./common/header.php'); ?>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Login</h1>
+    <?php if (isset($errorMessage)) echo "<div class='alert alert-danger'>$errorMessage</div>"; ?>
     <form method="post" action="">
-        <label for="userid">User ID:</label>
-        <input type="text" id="userid" name="userid" required><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-        <input type="submit" value="Login">
+        <div class="mb-3">
+            <label for="userid" class="form-label">User ID:</label>
+            <input type="text" id="userid" name="userid" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
-</body>
-</html>
+</div>
+
+<?php include('./common/footer.php'); ?>
